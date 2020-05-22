@@ -25,7 +25,7 @@ args = vars(parser.parse_args())
 # set some
 LOGIN_USER = "fake_user"
 LOGIN_PASSWORD_PATH = "/tmp/passfile"
-OS_VALUE = None
+global OS_VALUE
 server = args["fqdn"]
 os_input = args["os"]
 vlan = args["vlan"]
