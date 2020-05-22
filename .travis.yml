@@ -10,4 +10,4 @@ install:
 - pip install pylint
 - pipenv install --dev
 script:
-- pylint **/*.py
+- pylint **/*.{py}
