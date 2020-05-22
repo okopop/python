@@ -31,15 +31,6 @@ vlan = args["vlan"]
 system = args["system"]
 inv_id = server[2:8]
 
-def print_variables():
-    print("--------------------")
-    print("Inv-id: {}".format(inv_id))
-    print("FQDN: {}".format(server))
-    print("OS: {}".format(OS_VALUE))
-    print("VLAN: {}".format(vlan))
-    print("System: {}".format(system))
-    print("--------------------")
-
 def os_check():
     if os_input == "sles":
         OS_VALUE = "SUSE Linux Enterprise Server"
@@ -48,6 +39,15 @@ def os_check():
     else:
         print("Abort script: Operating System not supported")
         sys.exit()
+
+def print_variables():
+    print("--------------------")
+    print("Inv-id: {}".format(inv_id))
+    print("FQDN: {}".format(server))
+    print("OS: {}".format(OS_VALUE))
+    print("VLAN: {}".format(vlan))
+    print("System: {}".format(system))
+    print("--------------------")
 
 def yes_or_no(question):
     while "the answer is invalid":
