@@ -5,5 +5,7 @@ python:
 before_install:
   - python --version
   - pip install -U pip
+install:
+  - pip install pylint
 script:
   - find -name "*.py" | xargs pylint
