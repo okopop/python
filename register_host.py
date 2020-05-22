@@ -25,7 +25,6 @@ args = vars(parser.parse_args())
 # set some
 LOGIN_USER = "fake_user"
 LOGIN_PASSWORD_PATH = "/tmp/passfile"
-global OS_VALUE
 server = args["fqdn"]
 os_input = args["os"]
 vlan = args["vlan"]
@@ -42,6 +41,7 @@ def print_variables():
     print("--------------------")
 
 def os_check():
+    global OS_VALUE
     if os_input == "sles":
         OS_VALUE = "SUSE Linux Enterprise Server"
     elif os_input == "rhel":
