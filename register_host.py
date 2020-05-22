@@ -5,7 +5,6 @@
 # pylint: disable=missing-function-docstring
 import argparse
 import os
-import socket
 
 if os.geteuid() == 0:
     print("Hey don't run script as root...")
@@ -23,8 +22,9 @@ parser.add_argument("-s", "--system", required=True, help="System name")
 args = vars(parser.parse_args())
 
 # set some
-login_user = "fake_user"
-login_password_path = "/tmp/passfile"
+LOGIN_USER = "fake_user"
+LOGIN_PASSWORD_PATH = "/tmp/passfile"
+OS_VALUE = None
 server = args["fqdn"]
 os_input = args["os"]
 vlan = args["vlan"]
@@ -41,37 +41,37 @@ def print_variables():
     print("--------------------")
 
 def os_check():
-    global os_value
+    global OS_VALUE
     if os_input == "sles":
-        os_value = "SUSE Linux Enterprise Server"
+        OS_VALUE = "SUSE Linux Enterprise Server"
     elif os_input == "rhel":
-        os_value = "Red Hat Enterprise Linux"
+        OS_VALUE = "Red Hat Enterprise Linux"
     else:
         print("Abort script: Operating System not supported")
-        exit()
+        sys.exit()
 
 def yes_or_no(question):
     while "the answer is invalid":
-        reply = str(raw_input(question+' (y/n): ')).lower().strip()
+        reply = str(input(question+' (y/n): ')).lower().strip()
         if reply[:1] == 'y':
             return True
         if reply[:1] == 'n':
             print("Abort script...")
-            exit()
+            sys.exit()
 
 def login_cred():
-    if os.path.isfile(login_password_path):
-        login_pw = open(login_password_path, "r")
-        return(login_pw.read())
+    if os.path.isfile(LOGIN_PASSWORD_PATH):
+        login_pw = open(LOGIN_PASSWORD_PATH, "r")
+        return login_pw.read()
     else:
-        print(login_password_path + " is missing..")
-        exit()
+        print(LOGIN_PASSWORD_PATH + " is missing..")
+        sys.exit()
 
 def payload(login_password):
     content_input = {
         "inv": inv_id,
         "os": os_input,
-        "user": login_user,
+        "user": LOGIN_USER,
         "pass": login_password.rstrip()
     }
     data = """\
@@ -80,7 +80,7 @@ def payload(login_password):
 <user>{user}</user>
 <pass>{pass}</pass>\
     """
-    return(data.format(**content_input))
+    return data.format(**content_input)
 
 def create_host(payload_output):
     # make requests here
