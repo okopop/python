@@ -6,4 +6,4 @@ before_install:
   - python --version
   - pip install -U pip
 script:
-  - find -name "*.py" xargs pylint
+  - find -name "*.py" | xargs pylint
