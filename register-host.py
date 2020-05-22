@@ -1,4 +1,5 @@
 #!/bin/python
+"""register host"""
 import argparse
 import os
 import socket
