@@ -60,7 +60,7 @@ def login_cred():
     login_pw = open(login_password_path,"r")
     return(login_pw.read())
   else:
-    print login_password_path + " is missing.."
+    print(login_password_path + " is missing..")
     exit()
 
 def payload(login_password):
