@@ -5,7 +5,7 @@ try:
     i = 0
     while i < len(urls):
         r = requests.head(urls[i])
-        print "Status of", urls[i], ":", r.status_code
+        print("Status of", urls[i], ":", r.status_code)
         i += 1
 except requests.ConnectionError:
     print("failed to connect")
