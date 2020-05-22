@@ -5,10 +5,11 @@
 # pylint: disable=missing-function-docstring
 import argparse
 import os
+import sys
 
 if os.geteuid() == 0:
     print("Hey don't run script as root...")
-    exit()
+    sys.exit()
 
 #if socket.gethostname() != "correct.server.example.com":
 #  print "Run script on correct server..."
@@ -35,13 +36,12 @@ def print_variables():
     print("--------------------")
     print("Inv-id: {}".format(inv_id))
     print("FQDN: {}".format(server))
-    print("OS: {}".format(os_value))
+    print("OS: {}".format(OS_VALUE))
     print("VLAN: {}".format(vlan))
     print("System: {}".format(system))
     print("--------------------")
 
 def os_check():
-    global OS_VALUE
     if os_input == "sles":
         OS_VALUE = "SUSE Linux Enterprise Server"
     elif os_input == "rhel":
@@ -63,9 +63,8 @@ def login_cred():
     if os.path.isfile(LOGIN_PASSWORD_PATH):
         login_pw = open(LOGIN_PASSWORD_PATH, "r")
         return login_pw.read()
-    else:
-        print(LOGIN_PASSWORD_PATH + " is missing..")
-        sys.exit()
+    print(LOGIN_PASSWORD_PATH + " is missing..")
+    sys.exit()
 
 def payload(login_password):
     content_input = {
