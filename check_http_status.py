@@ -1,4 +1,5 @@
 #!/usr/bin/python
+"""check http status"""
 import requests
 try:
     urls = ["http://www.x.se", "http://www.x.se", "http://www.x.se"]
