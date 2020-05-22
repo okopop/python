@@ -4,7 +4,7 @@ import os
 import socket
 
 if os.geteuid() == 0:
-  print "Hey don't run script as root..."
+  print("Hey don't run script as root...")
   exit()
 
 #if socket.gethostname() != "correct.server.example.com": 
