@@ -81,7 +81,7 @@ def payload(login_password):
 
 def create_host(payload_output):
   # make requests here
-  print payload_output 
+  print(payload_output)
 
 def main():
   os_check()
