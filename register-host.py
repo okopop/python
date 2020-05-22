@@ -1,5 +1,8 @@
 #!/bin/python
 """register host"""
+# pylint: disable=missing-module-docstring
+# pylint: disable=missing-class-docstring
+# pylint: disable=missing-function-docstring
 import argparse
 import os
 import socket
@@ -40,44 +43,44 @@ def print_variables():
 def os_check():
     global os_value
     if os_input == "sles":
-      os_value = "SUSE Linux Enterprise Server"
+        os_value = "SUSE Linux Enterprise Server"
     elif os_input == "rhel":
-      os_value = "Red Hat Enterprise Linux"
+        os_value = "Red Hat Enterprise Linux"
     else:
-      print("Abort script: Operating System not supported")
-      exit()
+        print("Abort script: Operating System not supported")
+        exit()
 
 def yes_or_no(question):
     while "the answer is invalid":
-      reply = str(raw_input(question+' (y/n): ')).lower().strip()
-      if reply[:1] == 'y':
-        return True
-      if reply[:1] == 'n':
-        print("Abort script...")
-        exit()
+        reply = str(raw_input(question+' (y/n): ')).lower().strip()
+        if reply[:1] == 'y':
+            return True
+        if reply[:1] == 'n':
+            print("Abort script...")
+            exit()
 
 def login_cred():
     if os.path.isfile(login_password_path):
-      login_pw = open(login_password_path, "r")
-      return(login_pw.read())
+        login_pw = open(login_password_path, "r")
+        return(login_pw.read())
     else:
-      print(login_password_path + " is missing..")
-      exit()
+        print(login_password_path + " is missing..")
+        exit()
 
 def payload(login_password):
     content_input = {
-      "inv": inv_id,
-      "os": os_input,
-      "user": login_user,
-      "pass": login_password.rstrip()
+        "inv": inv_id,
+        "os": os_input,
+        "user": login_user,
+        "pass": login_password.rstrip()
     }
-    data= """\
+    data = """\
 <invid>{inv}</invid>
 <operatingsystem>{os}</operatingsystem>
 <user>{user}</user>
 <pass>{pass}</pass>\
     """
-    return(data.format(**content_input)) 
+    return(data.format(**content_input))
 
 def create_host(payload_output):
     # make requests here
