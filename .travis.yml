@@ -8,6 +8,7 @@ python:
   - "3.8"
 install:
 - pip install pipenv
+- pip install pylint
 - pipenv install --dev
 script:
 - pylint **/*.py
