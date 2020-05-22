@@ -41,7 +41,6 @@ def print_variables():
     print("--------------------")
 
 def os_check():
-    global OS_VALUE
     if os_input == "sles":
         OS_VALUE = "SUSE Linux Enterprise Server"
     elif os_input == "rhel":
