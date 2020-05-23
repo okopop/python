@@ -34,11 +34,10 @@ inv_id = server[2:8]
 def os_check():
     if os_input == "sles":
         return "SUSE Linux Enterprise Server"
-    elif os_input == "rhel":
+    if os_input == "rhel":
         return "Red Hat Enterprise Linux"
-    else:
-        print("Abort script: Operating System not supported")
-        sys.exit()
+    print("Abort script: Operating System not supported")
+    sys.exit()
 
 def print_variables():
     print("--------------------")
