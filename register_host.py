@@ -87,6 +87,7 @@ def create_host(payload_output):
     print(payload_output)
 
 def main():
+    """run program"""
     print_variables()
     yes_or_no("Register host. Is above correct?")
     create_host(payload(login_cred()))
