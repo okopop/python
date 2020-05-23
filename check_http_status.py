@@ -2,11 +2,11 @@
 """check http status"""
 import requests
 try:
-    urls = ["http://www.x.se", "http://www.x.se", "http://www.x.se"]
+    URLS = ["http://www.x.se", "http://www.x.se", "http://www.x.se"]
     i = 0
-    while i < len(urls):
-        r = requests.head(urls[i])
-        print("Status of", urls[i], ":", r.status_code)
+    while i < len(URLS):
+        R = requests.head(URLS[i])
+        print("Status of", URLS[i], ":", R.status_code)
         i += 1
 except requests.ConnectionError:
     print("failed to connect")
