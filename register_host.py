@@ -33,9 +33,9 @@ inv_id = server[2:8]
 
 def os_check():
     if os_input == "sles":
-        Global OS_VALUE = "SUSE Linux Enterprise Server"
+        return "SUSE Linux Enterprise Server"
     elif os_input == "rhel":
-        Global OS_VALUE = "Red Hat Enterprise Linux"
+        return "Red Hat Enterprise Linux"
     else:
         print("Abort script: Operating System not supported")
         sys.exit()
@@ -44,7 +44,7 @@ def print_variables():
     print("--------------------")
     print("Inv-id: {}".format(inv_id))
     print("FQDN: {}".format(server))
-    print("OS: {}".format(OS_VALUE))
+    print("OS: {}".format(os_check()))
     print("VLAN: {}".format(vlan))
     print("System: {}".format(system))
     print("--------------------")
@@ -85,7 +85,6 @@ def create_host(payload_output):
     print(payload_output)
 
 def main():
-    os_check()
     print_variables()
     yes_or_no("Register host. Is above correct?")
     create_host(payload(login_cred()))
